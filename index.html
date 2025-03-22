@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог книг</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-header">
+        <button onclick="window.location.href='login.html'">Войти</button>
+    </div>
+<script>
+// При загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        document.getElementById('logoutSection').style.display = 'block';
+    }
+});
+
+function logout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+}
+</script>
+    <div class="container">
+        <header>
+            <h1>Каталог книг</h1>
+            <div class="search-section">
+                <input type="text" id="searchInput" placeholder="Поиск по названию или автору...">
+                <button onclick="loadBooks()">Искать</button>
+                <button onclick="resetSearch()" class="reset-btn">Сбросить</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="filters">
+                <div class="filter-group">
+                    <h3>Сортировка</h3>
+                    <select id="sortBy" onchange="loadBooks()">
+                        <option value="">Без сортировки</option>
+                        <option value="title">По названию (А-Я)</option>
+                        <option value="-title">По названию (Я-А)</option>
+                        <option value="year">По году (старые)</option>
+                        <option value="-year">По году (новые)</option>
+                        <option value="rating">По рейтингу (возр.)</option>
+                        <option value="-rating">По рейтингу (убыв.)</option>
+                        <option value="language">По языку</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Жанры</h3>
+                    <div id="genreFilters"></div>
+                </div>
+                
+                <div class="filter-group">
+                    <h3>Год издания</h3>
+                    <input type="number" id="yearFrom" placeholder="От">
+                    <input type="number" id="yearTo" placeholder="До">
+                </div>
+
+                <div class="filter-group">
+                    <h3>Язык 
+                        <span class="filter-hint" title="Фильтр применится после нажатия кнопки">ℹ️</span>
+                    </h3>
+                    <select id="languageFilter">
+                        <option value="">Все языки</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Рейтинг</h3>
+                    <select id="ratingFilter">
+                        <option value="">Все</option>
+                        <option value="1">★+</option>
+                        <option value="2">★★+</option>
+                        <option value="3">★★★+</option>
+                        <option value="4">★★★★+</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="apply-filters" onclick="loadBooks()">Применить фильтры</button>
+                    <button class="reset-filters" onclick="resetFilters()">Сбросить всё</button>
+                </div>
+            </aside>
+
+            <main id="bookContainer"></main>
+        </div>
+    </div>
+<div id="adminPanel" style="display: none;">
+    <h2>Управление книгами</h2>
+    <button onclick="showAddBookForm()">➕ Добавить книгу</button>
+    <div id="bookFormContainer"></div>
+</div>
+
+    <script src="app.js"></script>
+</body>
+</html>

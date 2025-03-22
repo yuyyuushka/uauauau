@@ -1,0 +1,402 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.search-section input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    gap: 30px;
+}
+
+.filters {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.genre-checkbox {
+    margin-right: 8px;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-group label {
+    display: block;
+    margin: 5px 0;
+}
+
+.filter-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+.apply-filters {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#bookContainer {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-2px);
+}
+
+.cover-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.meta {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 12px;
+}
+
+.rating {
+    color: #ffc107;
+}
+
+.description {
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.book-info h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.author {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.no-books {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+.reset-btn {
+    background: #28a745 !important;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reset-filters {
+    background: #d4d9df !important;
+}
+
+.language {
+    margin-top: 10px;
+    color: #2c3e50;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+.cover-img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover; 
+    object-position: center top; 
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.book-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover .cover-img {
+    transform: scale(1.05); 
+}
+
+/* Анимация загрузки */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.book-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Плавное изменение фильтров */
+.main-content {
+    transition: all 0.3s ease;
+}
+
+/* Оптимизация для мобильных */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .filters {
+        width: 100%;
+        position: static;
+    }
+    
+    .cover-img {
+        height: 200px;
+    }
+}
+
+.filter-hint {
+    cursor: help;
+    font-size: 0.8em;
+    vertical-align: super;
+    color: #666;
+}
+
+.admin-form input {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 300px;
+}
+
+/* Авторизация */
+.auth-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.auth-panel input {
+    display: block;
+    margin: 5px 0;
+    padding: 8px;
+    width: 200px;
+}
+
+.auth-panel button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.auth-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 9999; 
+}
+
+.modal-content {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative; 
+}
+
+/* Форма добавления книг */
+.book-form input {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    padding: 8px;
+}
+
+.rent-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.rent-btn:hover {
+    background: #218838;
+}
+
+/* Общие стили для страниц авторизации */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-form button {
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-link {
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* Кнопки навигации */
+.nav-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background: #e9ecef;
+}
+
+/* Основные кнопки */
+.primary-btn {
+    padding: 15px 30px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background: #0056b3;
+}
+
+/* Шапка авторизации */
+.auth-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Контейнер выхода */
+.logout-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: none; /* По умолчанию скрыто */
+}
